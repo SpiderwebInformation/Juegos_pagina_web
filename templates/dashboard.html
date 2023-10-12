@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}"> <!-- Agrega el archivo CSS para el dashboard -->
+</head>
+<body>
+  <div class="main">
+    <!-- Barra de navegación o título -->
+    <h1>Bienvenido a la Página de Juegos</h1>
+
+    <!-- Opciones para abrir el juego 1 y el juego 2 -->
+    <div class="game-options">
+      <h2>Selecciona un juego:</h2>
+      <ul>
+        <li><a href="#">Juego 1</a></li>
+        <li><a href="#">Juego 2</a></li>
+      </ul>
+    </div>
+
+    <!-- Botón para cerrar sesión -->
+    <form method="POST" action="/cerrar_sesion">
+      <button type="submit">Cerrar sesión</button>
+    </form>
+  </div>
+</body>
+</html>
