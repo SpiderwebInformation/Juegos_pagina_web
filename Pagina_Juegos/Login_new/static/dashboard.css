@@ -1,0 +1,75 @@
+/* dashboard.css */
+
+/* Estilos generales */
+body {
+  font-family: 'Jost', sans-serif;
+  background-color: #f2f2f2;
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+/* Estilos para las opciones de juego */
+.game-options {
+  text-align: center;
+  margin-top: 20px;
+}
+
+h2 {
+  color: #333;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  background-color: #007BFF;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+a:hover {
+  background-color: #0056b3;
+}
+
+/* Estilos para el botón de cerrar sesión */
+form {
+  text-align: center;
+  margin-top: 20px;
+}
+
+button {
+  background-color: #dc3545;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #c82333;
+}

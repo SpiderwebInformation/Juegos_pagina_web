@@ -1,0 +1,98 @@
+
+.principal{
+    background-color: plum;
+}
+h1{
+	background-color:tomato; /*Lo vi en un codigo y es tan gracioso*/
+	color:white;
+	margin:0;
+	padding:10px;
+}
+p{
+	font-size: 30px;
+	font-weight: 400;
+}
+.negro{
+	color:black;
+}
+.azul{
+	color:blue;
+}
+.rojo{
+	color:red;
+}
+#padre{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+button{
+	width: 80px;
+	height: 80px;
+	margin:2px;
+}
+.boton{
+	background-color: #FFC300 ;
+	font-size: 26px;
+	font-weight: 600;
+}
+.btnNew{
+	height: 60px;
+	width: 246px;
+	background-color:steelblue;
+	color:white;
+	font-size: 30px;
+	font-weight: 700;
+}
+.btnRegresar{
+    height: 60px;
+	width: 246px;
+	background-color:steelblue;
+	color:white;
+	font-size: 30px;
+	font-weight: 700;
+}
+
+.new_span {
+    width: 226px;
+}
+.span3 {
+    width: 220px;
+    margin-top: 5%;
+}
+[class*="span"] {
+    text-align: center;
+    min-height: 1px;
+    margin-left: 30%;
+}
+
+.input-append .win_times {
+	background:#FCBF96 !important; 
+	width:101px;
+}
+
+.input-prepend {
+    margin-bottom: 10px;
+}
+.input-append, .input-prepend {
+    display: inline-block;
+    margin-bottom: 10px;
+    font-size: 0;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.input-append .add-on, .input-prepend .add-on {
+    display: inline-block;
+    width: auto;
+    height: 35px;
+    min-width: 85px;
+    padding: 4px 5px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    text-align: center;
+    text-shadow: 0 1px 0 #ffffff;
+    background-color: #eeeeee;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
