@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Piedra papel o tijera</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/gato.css">
+	<!-- <link rel="stylesheet" href="styles.css" -->
+</head>
+<body>
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<h1>Gato</h1>
+		</div>
+	</div>
+	<br>
+	<div class="puntacion ">
+		<p>puntacion</p>
+		<p>Equis: <span id="x"></span></p>
+		<p>Circulo: <span id="o"></span></p>
+		<p>Empate: <span id="e"></span></p>
+	
+	</div>
+	<br>
+	<div class="row text-center">
+		<div class="col-md-12">
+			<button onclick="startGame()" Class="btn btnNew">Nuevo Juego</button>
+			<button Class="btn btnRegresar">Regresar</button>
+		</div>
+		<div class="gamezone">
+			<div class = "selectSym">
+					<p>Selecciona el símbolo:</p>
+						<button onClick="selectSym('X')">X</button>
+			</div>
+		</div>
+
+		<!--<div>
+			<p>Selecciona el símbolo:</p>
+			<button onClick="selectSym('X')">X</button>
+		</div>-->
+	</div>
+
+	<div class="col-md-offset-3 col-md-6 text-center">
+		<table>
+			<tr>
+				<td class="cell" id="0"></td>
+				<td class="cell" id="1"></td>
+				<td class="cell" id="2"></td>
+			</tr>
+			<tr>
+				<td class="cell" id="3"></td>
+				<td class="cell" id="4"></td>
+				<td class="cell" id="5"></td>
+			</tr>
+			<tr>
+				<td class="cell" id="6"></td>
+				<td class="cell" id="7"></td>
+				<td class="cell" id="8"></td>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="endgame">
+		<div class="text"></div>
+	</div>
+	<!--<button class="unoVs">
+		<a href="gato.html">Uno vs Uno</a>
+	</button>-->
+	<div class="dp-flex">
+    <div class="c-body">
+      <div class="c-time">
+          <div class="screen">
+              <span id="time">00:00:00</span>
+          </div>  
+      </div>        
+    </div>
+  </div>
+
+	<script type="text/javascript" src="js/gato.js"></script>
+</body>
+</html>

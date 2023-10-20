@@ -1,82 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Juego de Objetos</title>
-    <style>
-        body {
-            text-align: center;
-        }
-        .container {
-            margin: 0 auto;
-            width: 300px;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/num.css">
+    <script defer src="js/num.js"></script>
+    <title>juegode15</title>
 </head>
+
 <body>
-    <div class="container">
-        <h1>Juego de Objetos</h1>
-        <p>El jugador que ponga el último objeto pierde.</p>
-        <div id="juego" style="display: none;">
-            <label for="totalObjetos">Número total de objetos (debe ser mayor que 10):</label>
-            <input type="number" id="totalObjetos" required>
-            <br>
-            <label for="minObjetos">Número mínimo de objetos (mayor que 1):</label>
-            <input type="number" id="minObjetos" required>
-            <br>
-            <label for="maxObjetos">Número máximo de objetos (mayor que 2):</label>
-            <input type="number" id="maxObjetos" required>
-            <br>
-            <button onclick="iniciarJuego()">Iniciar Juego</button>
-            <p>Objetos disponibles: <span id="objetos">0</span></p>
-            <p>Jugador actual: <span id="jugador">1</span></p>
-            <input type="number" id="eleccion" placeholder="Elige un número de objetos">
-            <button onclick="realizarJugada()">Realizar Jugada</button>
+    <header>
+        <h1>Juego del 15</h1>
+
+
+
+    </header>
+    <div class="marco">
+        <div class="caja uno" id="uno">1</div>
+        <div class="caja dos" id="dos">2</div>
+        <div class="caja tres" id="tres">3</div>
+        <div class="caja cuatro" id="cuatro">4</div>
+        <div class="caja quinto" id="cinco">5</div>
+        <div class="caja sexta" id="seix">6</div>
+        <div class="caja septima" id="siete">7</div>
+        <div class="caja octava" id="ocho">8</div>
+        <div class="caja novena" id="nueve">9</div>
+        <div class="caja decima" id="diez">10</div>
+        <div class="caja undecima" id="once">11</div>
+        <div class="caja doceaba" id="doce">12</div>
+        <div class="caja trece" id="trece">13</div>
+        <div class="caja catroce" id="catorce">14</div>
+        <div class="caja quince" id="quince">15</div>
+        <div class="caja blanco" id="blanco"></div>
+
+    </div>
+    <div class="texto">
+        <button class="reset" id="reset">reset</button>
+        <div class="record">
+            <h1>Record</h1>
+            <p id="tiempo">0</p>
         </div>
-        <p id="resultado" style="display: none;"></p>
+
     </div>
 
-    <script>
-        let totalObjetos = 0;
-        let minObjetos = 0;
-        let maxObjetos = 0;
-        let objetos = 0;
-        let jugadorActual = 1;
 
-        function iniciarJuego() {
-            totalObjetos = parseInt(document.getElementById("totalObjetos").value);
-            minObjetos = parseInt(document.getElementById("minObjetos").value);
-            maxObjetos = parseInt(document.getElementById("maxObjetos").value);
 
-            if (minObjetos >= maxObjetos || isNaN(totalObjetos) || isNaN(minObjetos) || isNaN(maxObjetos)) {
-                alert("Valores no válidos. Intenta de nuevo.");
-                return;
-            }
 
-            objetos = totalObjetos;
-            document.getElementById("objetos").textContent = objetos;
-            document.getElementById("juego").style.display = "block";
-        }
 
-        function realizarJugada() {
-            const eleccion = parseInt(document.getElementById("eleccion").value);
+    <footer>
+        <div>
+            <p>Copyright © 2022 Euphorichuman. All Rights Reserved. <br> Design: Ahmed-Zaghlout </p>
+        </div>
 
-            if (eleccion < minObjetos || eleccion > maxObjetos || eleccion > objetos || isNaN(eleccion)) {
-                alert("Selección no válida. Inténtalo de nuevo.");
-                return;
-            }
 
-            objetos -= eleccion;
-            document.getElementById("objetos").textContent = objetos;
-            jugadorActual = 3 - jugadorActual;
-            document.getElementById("jugador").textContent = jugadorActual;
+    </footer>
 
-            if (objetos < minObjetos) {
-                const jugadorPerdedor = 3 - jugadorActual;
-                document.getElementById("resultado").textContent = `¡Jugador ${jugadorPerdedor} ha perdido!`;
-                document.getElementById("resultado").style.display = "block";
-                document.getElementById("eleccion").style.display = "none";
-            }
-        }
-    </script>
+
 </body>
+
 </html>
