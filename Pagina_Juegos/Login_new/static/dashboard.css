@@ -61,8 +61,16 @@ form {
   margin-top: 20px;
 }
 
-button {
+.buttonCerrar {
   background-color: #dc3545;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.buttonJuego {
+  background-color: #007BFF;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -71,5 +79,5 @@ button {
 }
 
 button:hover {
-  background-color: #c82333;
+  background-color: gray;
 }

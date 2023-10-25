@@ -104,10 +104,23 @@ def dashboard():
     else:
         flash("Debes iniciar sesión primero", "error")
         return redirect(url_for('index', show_login=True))
+
+@app.route('/regresar', methods=['POST'])
+def regresar():
+    # Verifica si el usuario está autenticado
+    if 'usuario' in session:
+        return render_template('dashboard.html')
+    else:
+        flash("Debes iniciar sesión primero", "error")
+        return redirect(url_for('index', show_login=True))
+    
 @app.route('/gato', methods=['POST'])
 def gato():
-    if request.method == 'POST':
+    if 'usuario' in session:
         return render_template('gato.html')
+    else:
+        flash("Debes iniciar sesión primero", "error")
+        return redirect(url_for('index', show_login=True))
 
 @app.route('/cerrar_sesion', methods=['POST'])
 def cerrar_sesion():
