@@ -1,0 +1,47 @@
+/*          Archivo de estilos para los Alerts          */
+.alertContainer{
+  background-color: rgb(170, 252, 253);
+  border: 1px solid;
+  border-radius: 5px;
+  left: 25%;
+  position: absolute;
+  top: 10em;
+  width: 50%;
+  z-index: 100;
+}
+
+.alertBtn{
+  background-color: rgb(63, 102, 221);
+  color: rgb(229, 255, 255);
+  border: 1px solid rgb(14, 37, 107);
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  line-height: 30px;
+  margin: 1em auto;
+  text-align: center;
+  width: 25%;
+}
+.alertBtn:hover{
+background-color: rgb(14, 37, 107);
+  color: rgb(89, 214, 245);
+  border: 1px solid rgb(89, 214, 245);
+}
+
+.alertParrafo{
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  margin: 1em;
+}
+/*          Reglas de Juego          */
+.reglasContainer{
+  font-size: 18px;
+  left: 5%;
+  padding: 0 5%;
+  top: 5em;
+  width: 90%;
+}
+.reglasContainer ul ul{
+  padding: 0 5%;
+}

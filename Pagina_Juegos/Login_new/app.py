@@ -100,10 +100,11 @@ def dashboard():
     # Verifica si el usuario está autenticado
     if 'usuario' in session:
         return render_template('dashboard.html')
-
+    
     else:
         flash("Debes iniciar sesión primero", "error")
         return redirect(url_for('index', show_login=True))
+    
 
 @app.route('/regresar', methods=['POST'])
 def regresar():
@@ -113,15 +114,24 @@ def regresar():
     else:
         flash("Debes iniciar sesión primero", "error")
         return redirect(url_for('index', show_login=True))
+
     
-@app.route('/gato', methods=['POST'])
+@app.route('/gato', methods=['GET','POST'])
 def gato():
+     if 'usuario' in session:
+         return render_template('gato.html')
+     else:
+        flash("Debes iniciar sesión primero", "error")
+        return redirect(url_for('cachipun', show_login=True))
+     
+@app.route('/cachipun', methods=['GET','POST'])
+def cachipun():
     if 'usuario' in session:
-        return render_template('gato.html')
+        return render_template('cachipun.html')
     else:
         flash("Debes iniciar sesión primero", "error")
-        return redirect(url_for('index', show_login=True))
-
+        return redirect(url_for('cachipun', show_login=True))
+    
 @app.route('/cerrar_sesion', methods=['POST'])
 def cerrar_sesion():
     # Elimina el nombre de usuario de la sesión

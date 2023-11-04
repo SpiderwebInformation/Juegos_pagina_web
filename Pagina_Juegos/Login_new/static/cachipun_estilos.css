@@ -1,0 +1,138 @@
+@font-face {
+  font-family: 'Roboto';
+  src: local('funtes/Roboto-Regular.ttf')
+}
+/*          Estilos Generales          */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/*          Header y Footer          */
+header, footer {
+  background-color: #557e7c;
+  color: #ebebd3;
+  padding: 1em;
+  position: relative;
+}
+
+header::after {
+  clear: both;
+  content: '';
+  display: block;
+}
+#logo {
+  float: left;
+  font-size: 1rem;
+  font-weight: 300;
+  margin: 0;
+  text-transform: uppercase;
+  width: 70%;
+}
+
+#logo span {
+  font-weight: 700;
+}
+
+footer{
+  height: 8em;
+  padding: 2em;
+}
+footer span, footer a{
+  display: inline-block;
+  margin: 0 .15em 1em;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+}
+footer a {
+  color: rgb(174, 243, 104);
+}
+footer a:hover {
+  color: rgb(151, 5, 5);
+}
+
+/*          Principal          */
+
+main {
+  background-color: midnightblue;
+  height: 30em;
+  padding-top: 1em;
+}
+main span{
+  display: block;
+}
+span, a{
+  font-size: 20px;
+}
+
+section{
+  display: flex;
+  color: rgb(214, 243, 184);
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 70%;
+  margin: 1em 15%;
+}
+section h2 {
+  text-align: center;
+  width: 100%;
+}
+section article{
+  display: inline-block;
+  text-align: center;
+  width: 40%;
+}
+#juegoUsuario{
+  justify-content: space-between;
+}
+#juegoUsuario img{
+  margin-top: 1em;
+  width: 30%;
+}
+#juegoUsuario img:active{
+  box-shadow: 2px 2px 10px 5px #ebebd3;
+}
+
+/*          Pantallas mayores a 500px          */
+@media (min-width:500px){
+  main{
+    height: 35em;
+  }
+#juegoUsuario img{
+    margin-top: 2em;
+    width: 25%;
+  } 
+}
+/*          Pantallas mayores a 793px          */
+@media (min-width:793px){
+  body{
+    background-color: skyblue;
+  }
+  main span{
+    display: block;
+  }
+  main{
+    height: 40em;
+    margin-left: 15%;
+    width: 70%;
+  }
+  #juegoUsuario{
+    justify-content: space-evenly;
+  }
+  #juegoUsuario img{
+    margin-top: 5em;
+    width: 30%;
+  } 
+}
+/*          Pantallas mayores a 1000px          */
+@media (min-width:1000px){
+   main{
+    height: 35em;
+  }
+#juegoUsuario img{
+    margin-top: 2em;
+    width: 25%;
+  } 
+}

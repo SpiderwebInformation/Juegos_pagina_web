@@ -1,0 +1,141 @@
+/*     Archivo de estilos para el menu de navigación     */
+@font-face{
+  font-family: 'Roboto';
+  src: local('funtes/Roboto-Regular.ttf')
+}
+
+header{
+  background-color: #557e7c;
+  color: #ebebd3;
+  padding: 1em;
+  position: relative;
+}
+
+header::after{
+  clear: both;
+  content: '';
+  display: block;
+}
+
+#logo{
+  float: left;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+#logo span{
+  font-weight: 300;
+}
+
+#site-nav {
+  background: #464655;
+  font-family: 'Roboto';
+  font-weight: 700;
+  position: absolute;
+  right: 0;
+  top: 100%;
+}
+.site-nav{
+  height: 0;
+  overflow: hidden;
+}
+.site-nav-open{
+  height: auto;
+}
+#site-nav ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#site-nav li{
+  border-bottom: 1px solid #575766;
+}
+#site-nav li:last-child{
+  border-bottom: none;
+}
+
+#site-nav a{
+  color: #ebebd3;
+  display: block;
+  padding: 2em 6em;
+  text-decoration: none;
+  text-transform: uppercase;
+} 
+#site-nav a:hover{
+  background-color: #e4b363;
+  color: #464655;
+}
+#site-nav img{
+  display: inline-block;
+  font-size: 1.5em;
+  height: 20px;
+  margin: auto 1em;
+  text-align: right;
+  width: auto;
+}
+
+#menu-toggle{
+  cursor: pointer;
+  padding: 1em;
+  position: absolute;
+  right: .5em;
+  top: .5em;
+}
+.menu-open #menu-btn{
+ transform: rotate(45deg);
+}
+.menu-open #menu-btn::before{
+  opacity: 0;
+}
+.menu-open #menu-btn::after{
+transform: translateY(-3px) rotate(-90deg);
+}
+
+#menu-btn, 
+#menu-btn::before,
+#menu-btn::after{
+  background-color: #ebebd3;
+  border-radius: 3px;
+  content: '';
+  display: block;
+  height: 3px;
+  transition: all ease-in-out 500ms;
+  width: 1.75em;
+}
+#menu-btn::before{
+  transform: translateY(-6px);
+}
+#menu-btn::after{
+  transform: translateY(3px);
+}
+
+@media (min-width:793px){
+  #menu-toggle{
+    display: none;
+  }
+  #site-nav{
+    background: transparent;
+    float: right;
+    height: auto;
+    margin-right: 10px;
+    position: relative;
+  }
+  #site-nav li{
+    border: none;
+    display: inline-block;
+  }
+  #site-nav a{
+    margin-left: 3em;
+    padding: 0;
+  }
+  #site-nav a:hover{
+  background: transparent;
+  color: #e4b363;
+  }
+  #site-nav img{
+    display: none;
+  }
+}

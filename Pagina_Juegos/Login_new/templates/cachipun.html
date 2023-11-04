@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Piedra, Papel ó tijera</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='cachipun_alerts.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='cachipun_estilos.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='cachipun_menu.css') }}">
+</head>
+
+<body>
+  <header>
+    <h1 id="logo">Juego <span>Piedra, Papel o Tijera</span></h1>
+    <nav id="site-nav" class="site-nav">
+      <ul>
+        <li><a href="#" id="menuReset"><img src="../static/info.svg" alt="Reset">Reset</a></li>
+        <li><a href="#" id="menuReglas"><img src="../static/info.svg" alt="Reglas">Reglas</a></li>
+        <li><a href="#" id="menuReglas"><img src="../static/info.svg" alt="Regresar">Regresar</a></li>
+        <li><a href="#" id="menuReglas"><img src="../static/info.svg" alt="Regresar">salir</a></li>
+      </ul>
+    </nav>
+    <div id="menu-toggle">
+      <span id="menu-btn"></span>
+    </div>
+  </header>
+  <main>
+    <section id="puntaje">
+      <h2>Puntos</h2>
+      <article>
+        <h3>Usuario</h3>
+        <span id="puntosUsuario">0</span>
+      </article>
+      <article>
+        <h3>IA</h3>
+        <span id="puntosBot">0</span>
+      </article>
+    </section>
+    <section id="jugada">
+      <h2>Jugada</h2>
+      <article class="jugadaUsuario">
+        <img src="../static/vacio.png" alt="Jugada Usuario">
+        <span>Usuario</span>
+      </article>
+      <article class="jugadaBot">
+        <img src="../static/vacio.png" alt="Jugada IA">
+        <span>IA</span>
+      </article>
+    </section>
+    <section id="juegoUsuario">
+      <h2>Elegí tu jugada</h2>
+      <img id="piedra" src="../static/piedra.png" alt="Opciones del Usuario, Piedra">
+      <img id="papel" src="../static/papel.png" alt="Opciones del Usuario, Papel">
+      <img id="tijera" src="../static/tijera.png" alt="Opciones del Usuario, Tijera">
+    </section>
+  </main>
+  <!--<footer>
+    <span>2023 </span><a href="https://diegochiapa.com.ar" target="_blank">Diego Chiapa</a>
+  </footer>-->
+  <script type="text/javascript" src="{{ url_for('static', filename='cachipun_Juego.js') }}" ></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='cachipun_Alert.js') }}" ></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='cachipun_Menu.js') }}" ></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='cachipun_app.js') }}" ></script>
+</body>
+
+</html>
