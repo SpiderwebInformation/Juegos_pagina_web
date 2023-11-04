@@ -17,8 +17,8 @@ class Alert {
     document.querySelector('body').removeChild(this.content);
   }
   actionJuego() {
-    juego.jugadaBot.setAttribute('src', './img/vacio.png');
-    juego.jugadaUsuario.setAttribute('src', './img/vacio.png');
+    juego.jugadaBot.setAttribute('src', '../static/vacio.png');
+    juego.jugadaUsuario.setAttribute('src', '../static/vacio.png');
     juegoUsuario.addEventListener('click', juego.usuario);
   }
 }
