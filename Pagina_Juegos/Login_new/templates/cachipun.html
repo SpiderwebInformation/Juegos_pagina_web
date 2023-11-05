@@ -17,8 +17,7 @@
       <ul>
         <li><a href="#" id="menuReset"><img src="../static/info.svg" alt="Reset">Reset</a></li>
         <li><a href="#" id="menuReglas"><img src="../static/info.svg" alt="Reglas">Reglas</a></li>
-        <li><a href="#" id="menuReglas"><img src="../static/info.svg" alt="Regresar">Regresar</a></li>
-        <li><a href="#" id="menuReglas"><img src="../static/info.svg" alt="Regresar">salir</a></li>
+        <li><a href="{{ url_for('dashboard') }}"><img src="../static/info.svg" alt="Regresar">Regresar</a></li>
       </ul>
     </nav>
     <div id="menu-toggle">
@@ -55,9 +54,6 @@
       <img id="tijera" src="../static/tijera.png" alt="Opciones del Usuario, Tijera">
     </section>
   </main>
-  <!--<footer>
-    <span>2023 </span><a href="https://diegochiapa.com.ar" target="_blank">Diego Chiapa</a>
-  </footer>-->
   <script type="text/javascript" src="{{ url_for('static', filename='cachipun_Juego.js') }}" ></script>
   <script type="text/javascript" src="{{ url_for('static', filename='cachipun_Alert.js') }}" ></script>
   <script type="text/javascript" src="{{ url_for('static', filename='cachipun_Menu.js') }}" ></script>
