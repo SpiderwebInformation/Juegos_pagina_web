@@ -1,8 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
+from werkzeug.security import check_password_hash, generate_password_hash
+from flask import Flask, request, flash, redirect, url_for
 import mysql.connector
 import bcrypt
 import os
-
+import re 
 app = Flask(__name__)
 
 # Cargar la configuración desde el archivo config.py
@@ -43,6 +45,21 @@ def registrar():
         usuario = request.form['Usuario']
         contraseña = request.form['pswd']
         correo = request.form['email']
+
+        # Verificar si el usuario ya existe
+        cursor = conn.cursor()
+        cursor.execute("SELECT Usuario FROM login WHERE Usuario = %s", (usuario,))
+        existing_user = cursor.fetchone()
+        #cursor.close()
+
+        if existing_user:
+            flash('El nombre de usuario ya está en uso. Elige otro.')
+            cursor.close()
+            return redirect(url_for('login'))
+        ##Verificar si el correo es de Gmail
+        if not re.match(r"[^@]+@gmail\.com", correo):
+            flash('Por favor, ingresa una dirección de correo de Gmail válida.')
+            return redirect(url_for('login'))
 
         # Cifra la contraseña antes de almacenarla en la base de datos
         hashed_password = bcrypt.hashpw(contraseña.encode('utf-8'), bcrypt.gensalt())
@@ -104,6 +121,7 @@ def dashboard():
     else:
         flash("Debes iniciar sesión primero", "error")
         return redirect(url_for('login', show_login=True))
+    
 
 @app.route('/regresar', methods=['POST'])
 def regresar():
@@ -114,22 +132,23 @@ def regresar():
         flash("Debes iniciar sesión primero", "error")
         return redirect(url_for('login', show_login=True))
 
-@app.route('/gato', methods=['GET', 'POST'])
+    
+@app.route('/gato', methods=['GET','POST'])
 def gato():
      if 'usuario' in session:
          return render_template('gato.html')
      else:
         flash("Debes iniciar sesión primero", "error")
         return redirect(url_for('cachipun', show_login=True))
-
-@app.route('/cachipun', methods=['GET', 'POST'])
+     
+@app.route('/cachipun', methods=['GET','POST'])
 def cachipun():
     if 'usuario' in session:
         return render_template('cachipun.html')
     else:
         flash("Debes iniciar sesión primero", "error")
         return redirect(url_for('cachipun', show_login=True))
-
+    
 @app.route('/cerrar_sesion', methods=['POST'])
 def cerrar_sesion():
     # Elimina el nombre de usuario de la sesión
