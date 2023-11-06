@@ -32,10 +32,10 @@ def crear_tabla_juego():
     conn.commit()
 
 @app.route('/')
-def index():
+def login():
     show_login = request.args.get('show_login', False)
     show_signup = request.args.get('show_signup', False)
-    return render_template('index.html', show_login=show_login, show_signup=show_signup)
+    return render_template('login.html', show_login=show_login, show_signup=show_signup)
 
 @app.route('/registrar', methods=['POST'])
 def registrar():
@@ -55,13 +55,13 @@ def registrar():
             flash("Registro exitoso", "success")  # Muestra un mensaje de éxito
 
             # Redirige a la página de inicio con la sección de "Crear cuenta" visible
-            return redirect(url_for('index', show_signup=True))
+            return redirect(url_for('login', show_signup=True))
         except mysql.connector.Error as err:
             flash("Error al registrar usuario", "error")  # Muestra un mensaje de error
             print(f"Error de MySQL: {err}")
 
     # En caso de que el método HTTP no sea POST, puedes redirigir al usuario a la página de inicio
-    return redirect(url_for('index'))
+    return redirect(url_for('login'))
 
 @app.route('/iniciar_sesion', methods=['POST'])
 def iniciar_sesion():
@@ -84,16 +84,16 @@ def iniciar_sesion():
                 else:
                     flash("Contraseña incorrecta", "error")  # Muestra un mensaje de error
                     # Redirige a la página de inicio con la sección de "Iniciar sesión" visible
-                    return redirect(url_for('index', show_login=True))
+                    return redirect(url_for('login', show_login=True))
             else:
                 flash("Usuario no encontrado", "error")  # Muestra un mensaje de error
                 # Redirige a la página de inicio con la sección de "Iniciar sesión" visible
-                return redirect(url_for('index', show_login=True))
+                return redirect(url_for('login', show_login=True))
         except mysql.connector.Error as err:
             print(f"Error de MySQL: {err}")
 
     # En caso de que el método HTTP no sea POST, puedes redirigir al usuario a la página de inicio
-    return redirect(url_for('index'))
+    return redirect(url_for('login'))
 
 @app.route('/dashboard')
 def dashboard():
@@ -103,7 +103,7 @@ def dashboard():
     
     else:
         flash("Debes iniciar sesión primero", "error")
-        return redirect(url_for('index', show_login=True))
+        return redirect(url_for('login', show_login=True))
     
 
 @app.route('/regresar', methods=['POST'])
@@ -113,7 +113,7 @@ def regresar():
         return render_template('dashboard.html')
     else:
         flash("Debes iniciar sesión primero", "error")
-        return redirect(url_for('index', show_login=True))
+        return redirect(url_for('login', show_login=True))
 
     
 @app.route('/gato', methods=['GET','POST'])
@@ -137,7 +137,7 @@ def cerrar_sesion():
     # Elimina el nombre de usuario de la sesión
     session.pop('usuario', None)
     # Redirige a la página de inicio con la sección de "Iniciar sesión" visible
-    return redirect(url_for('index'))
+    return redirect(url_for('login'))
 
 if __name__ == '__main__':
     crear_tabla_login()  # Crea la tabla 'login' si no existe
