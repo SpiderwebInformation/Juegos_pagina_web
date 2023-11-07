@@ -127,55 +127,69 @@ section{
   border-bottom: #D59F0F;
   border-radius: 4px;
 }
-section.fondo{
-  position: fixed;
+.fondo {
+  /* Elimina la propiedad 'position: fixed;' */
   z-index: -1;
   background-color: #D59F0F;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-
-
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
-
-section.fondo {
-    position: fixed;
-    z-index: -1;
-    background-color: #D59F0F;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
+/* Estilos para el carrusel */
 .carousel {
-    display: flex;
-    overflow: hidden;
+  display: flex;
+  overflow: hidden;
+  height: 900px; /* Establece la altura deseada para el carrusel */
 }
 
 .carousel img {
-    width: 100%;
-    height: auto;
-    transition: opacity 1s;
-    display: none;
+  width: 100%;
+  height: 100%; /* Establece la altura deseada para las imágenes */
+  object-fit: cover; /* Ajusta el tamaño de la imagen para cubrir el contenedor sin deformarla */
+  object-position: center top; /* Ajusta la posición de la imagen si es necesario */
+  transition: opacity 1s;
+  display: none;
+
 }
 
 .carousel img.active {
-    display: block;
+  display: block;
 }
 
+/* Estilos para la sección de visión */
+.vision {
+  background-color: #f7f7f7;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px; /* Agregar bordes redondeados */
+}
+
+.vision h2 {
+  font-size: 28px;
+  color: #002B7A;
+}
+
+.vision p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Estilos para el footer */
 .footer {
     background-color: #002B7A;
     color: white;
     padding: 20px 0;
     text-align: center;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+    margin-top: 20px;
 }
 
 .footer .container {
     max-width: 1200px;
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .footer p {
@@ -194,20 +208,4 @@ section.fondo {
 .footer a {
     color: white;
     text-decoration: none;
-}
-.vision {
-    background-color: #f7f7f7;
-    padding: 20px;
-    text-align: center;
-}
-
-.vision h2 {
-    font-size: 28px;
-    color: #002B7A;
-}
-
-.vision p {
-    font-size: 16px;
-    color: #333;
-    line-height: 1.6;
 }
