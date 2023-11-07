@@ -4,49 +4,54 @@
     <meta charset="utf-8">
     <title>PSI HFA</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styledos.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<nav>
-    <div class="logo">
-        SpiderWebInformation
-    </div>
-    <input type="checkbox" id="click">
-    <label for="click" class="menu-btn">
-        <i class="fas fa-bars"></i>
-    </label>
-    <ul>
-        <li><a href="{{ url_for('login') }}">Iniciar sesión</a></li>
-    </ul>
-</nav>
-<section class="fondo">
-    <div class="carousel">
-        <img src="{{ url_for('static', filename='Jhipster.jpg') }}" class="active">
-        <img src="{{ url_for('static', filename='tictac.png') }}">
-        <img src="{{ url_for('static', filename='ppt.jpg') }}">
-    </div>
-    <script>
+    <nav>
+        <div class="logo">
+            SpiderWebInformation
+        </div>
+        <input type="checkbox" id="click">
+        <label for="click" class="menu-btn">
+            <i class="fas fa-bars"></i>
+        </label>
+        <ul>
+            <li><a href="{{ url_for('login') }}">Iniciar sesión</a></li>
+        </ul>
+    </nav>
+    <section class="fondo">
+        <div class="carousel">
+            <img src="{{ url_for('static', filename='Jhipster.jpg') }}" class="active">
+            <img src="{{ url_for('static', filename='tictac.png') }}">
+            <img src="{{ url_for('static', filename='ppt.jpg') }}">
+            <img src="{{ url_for('static', filename='bg_main.jpg') }}">
+
+        </div>
+    </section>
+    <section class="vision">
+        <h2>Visión</h2>
+        <p>
+            Contemplamos con gran entusiasmo el horizonte, donde nuestra visión para el futuro se manifiesta con un espíritu de crecimiento constante. Anhelamos continuar enriqueciendo la experiencia de la comunidad de FES Aragón mediante la incorporación de nuevos y emocionantes juegos a nuestra plataforma. No solo deseamos ser creadores, sino también facilitadores de la creatividad, por lo que extendemos una cálida invitación a todos los miembros de la comunidad que compartan nuestra pasión por los juegos. Si alguna persona en FES Aragón siente el deseo de contribuir y compartir sus creaciones en nuestra página web, sería un honor para nosotros. Nos ilusiona la perspectiva de ver nuestra plataforma convertirse en un espacio de colaboración donde la diversidad de ideas y talentos pueda florecer, enriqueciendo aún más la experiencia educativa y de entretenimiento que ofrecemos. Juntos, forjaremos un futuro lleno de desafíos y diversión, promoviendo la comunidad y la creatividad en FES Aragón.
+        </p>
+    </section>
+<script>
     let currentImage = 0;
     const images = document.querySelectorAll('.carousel img');
 
     function changeImage() {
         images[currentImage].classList.remove('active');
         currentImage = (currentImage + 1) % images.length;
-        images[currentImage].classList.add('active');
+        images[currentImage].classList.add('active'); // Corregir la línea aquí
     }
 
     setInterval(changeImage, 5000);  // Cambia la imagen cada 5 segundos (5000 ms)
 </script>
-</section>
-
-<div class="footer">
-    <div class="container">
-        <p>SpiderWebInformation FES ARAGON UNAM</p>
-        <p>&copy; 2023 Todos los derechos reservados</p>
+    <div class="footer">
+        <div class="container">
+            <p>SpiderWebInformation FES ARAGON UNAM</p>
+            <p>&copy; 2023 Todos los derechos reservados</p>
+        </div>
     </div>
-</div>
 </body>
-
 </html>
