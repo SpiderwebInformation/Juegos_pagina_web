@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>PSI HFA</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styledos.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<nav>
+    <div class="logo">
+        SpiderWebInformation
+    </div>
+    <input type="checkbox" id="click">
+    <label for="click" class="menu-btn">
+        <i class="fas fa-bars"></i>
+    </label>
+    <ul>
+        <li><a href="{{ url_for('login') }}">Iniciar sesión</a></li>
+    </ul>
+</nav>
+<section class="fondo">
+    <div class="carousel">
+        <img src="{{ url_for('static', filename='Jhipster.jpg') }}" class="active">
+        <img src="{{ url_for('static', filename='tictac.png') }}">
+        <img src="{{ url_for('static', filename='ppt.jpg') }}">
+    </div>
+    <script>
+    let currentImage = 0;
+    const images = document.querySelectorAll('.carousel img');
+
+    function changeImage() {
+        images[currentImage].classList.remove('active');
+        currentImage = (currentImage + 1) % images.length;
+        images[currentImage].classList.add('active');
+    }
+
+    setInterval(changeImage, 5000);  // Cambia la imagen cada 5 segundos (5000 ms)
+</script>
+</section>
+
+<div class="footer">
+    <div class="container">
+        <p>SpiderWebInformation FES ARAGON UNAM</p>
+        <p>&copy; 2023 Todos los derechos reservados</p>
+    </div>
+</div>
+</body>
+
+</html>
