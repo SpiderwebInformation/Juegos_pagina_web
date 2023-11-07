@@ -32,11 +32,16 @@ def crear_tabla_juego():
                       NombreJuego VARCHAR(50) NOT NULL,
                       Puntuacion INT)''')
     conn.commit()
-
 @app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/login')
 def login():
     show_login = request.args.get('show_login', False)
     show_signup = request.args.get('show_signup', False)
+
+
     return render_template('login.html', show_login=show_login, show_signup=show_signup)
 
 @app.route('/registrar', methods=['POST'])
