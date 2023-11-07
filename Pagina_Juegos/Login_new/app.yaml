@@ -1,0 +1,14 @@
+runtime: python39  # Reemplaza con la versión de Python que estés utilizando
+
+entrypoint: gunicorn -b :$PORT app:app  # Reemplaza 'app' con el nombre de tu módulo principal
+
+env_variables:
+  # Define aquí tus variables de entorno si es necesario
+  SECRET_KEY: "tu_secreto"
+
+handlers:
+- url: /static
+  static_dir: static/
+
+- url: /.*
+  script: auto
