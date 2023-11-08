@@ -23,7 +23,16 @@
           <button type="submit" class="buttonJuego">Piedra, papel o tijera</button>
         </form>
     </div>
+    <!-- Puntajes más altos -->
 
+    <h1>Dashboard de {{ session.usuario }}</h1>
+
+<h2>Puntajes individuales:</h2>
+<ul>
+    <li>Gato: {% if puntajes_individuales is defined %}{{ puntajes_individuales['Gato'] }}{% else %}N/A{% endif %}</li>
+    <li>Cachipun: {% if puntajes_individuales is defined %}{{ puntajes_individuales['Cachipun'] }}{% else %}N/A{% endif %}</li>
+    <!-- Agrega más juegos según sea necesario -->
+</ul>
     <!-- Botón para cerrar sesión -->
     <form method="POST" action="/cerrar_sesion">
       <button type="submit" class="buttonCerrar">Cerrar sesión</button>
