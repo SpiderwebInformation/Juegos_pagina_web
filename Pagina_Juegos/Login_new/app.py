@@ -4,7 +4,8 @@ from flask import Flask, request, flash, redirect, url_for
 import mysql.connector
 import bcrypt
 import os
-import re 
+import re
+
 app = Flask(__name__)
 
 # Cargar la configuración desde el archivo config.py
@@ -13,6 +14,7 @@ app.config.from_pyfile('config.py')
 # Establecer la conexión a la base de datos MySQL
 conn = mysql.connector.connect(**app.config['DATABASE_CONFIG'])
 cursor = conn.cursor()
+
 
 # Crear la tabla 'login' si no existe
 def crear_tabla_login():
@@ -23,6 +25,7 @@ def crear_tabla_login():
                       CorreoElectronico VARCHAR(50) NOT NULL)''')
     conn.commit()
 
+
 # Crear la tabla 'juego' si no existe
 def crear_tabla_juego():
     cursor.execute('''CREATE TABLE IF NOT EXISTS juego (
@@ -32,17 +35,20 @@ def crear_tabla_juego():
                       NombreJuego VARCHAR(50) NOT NULL,
                       Puntuacion INT)''')
     conn.commit()
+
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/login')
 def login():
     show_login = request.args.get('show_login', False)
     show_signup = request.args.get('show_signup', False)
 
-
     return render_template('login.html', show_login=show_login, show_signup=show_signup)
+
 
 @app.route('/registrar', methods=['POST'])
 def registrar():
@@ -55,7 +61,7 @@ def registrar():
         cursor = conn.cursor()
         cursor.execute("SELECT Usuario FROM login WHERE Usuario = %s", (usuario,))
         existing_user = cursor.fetchone()
-        #cursor.close()
+        # cursor.close()
 
         if existing_user:
             flash('El nombre de usuario ya está en uso. Elige otro.')
@@ -71,7 +77,8 @@ def registrar():
 
         try:
             # Inserta los datos en la tabla 'login' junto con la contraseña cifrada
-            cursor.execute("INSERT INTO login (Usuario, Contraseña, CorreoElectronico) VALUES (%s, %s, %s)", (usuario, hashed_password, correo))
+            cursor.execute("INSERT INTO login (Usuario, Contraseña, CorreoElectronico) VALUES (%s, %s, %s)",
+                           (usuario, hashed_password, correo))
             conn.commit()
 
             flash("Registro exitoso", "success")  # Muestra un mensaje de éxito
@@ -83,7 +90,12 @@ def registrar():
             print(f"Error de MySQL: {err}")
 
     # En caso de que el método HTTP no sea POST, puedes redirigir al usuario a la página de inicio
-    return redirect(url_for('login'))
+    id_usuario = cursor.lastrowid  # obtener ID asignado
+
+    session['usuario_id'] = id_usuario
+
+    return redirect(url_for('dashboard'))
+
 
 @app.route('/iniciar_sesion', methods=['POST'])
 def iniciar_sesion():
@@ -93,14 +105,15 @@ def iniciar_sesion():
 
         try:
             # Obtén la contraseña almacenada en la base de datos para el usuario dado
-            cursor.execute("SELECT Contraseña FROM login WHERE Usuario = %s", (usuario,))
+            cursor.execute("SELECT Contraseña, ID FROM login WHERE Usuario = %s", (usuario,))
             result = cursor.fetchone()
 
             if result:  # Si se encontró el usuario en la base de datos
-                stored_password = result[0]
+                stored_password, user_id = result  # Desempaqueta el resultado
 
                 # Verifica si la contraseña ingresada coincide con la contraseña almacenada
                 if bcrypt.checkpw(contraseña.encode('utf-8'), stored_password.encode('utf-8')):
+                    session['usuario_id'] = user_id  # Almacena el ID de usuario en la sesión
                     session['usuario'] = usuario  # Almacena el nombre de usuario en la sesión
                     return redirect(url_for('dashboard'))  # Redirige a la página de dashboard
                 else:
@@ -117,16 +130,14 @@ def iniciar_sesion():
     # En caso de que el método HTTP no sea POST, puedes redirigir al usuario a la página de inicio
     return redirect(url_for('login'))
 
+
 @app.route('/dashboard')
 def dashboard():
-    # Verifica si el usuario está autenticado
     if 'usuario' in session:
         return render_template('dashboard.html')
-    
     else:
         flash("Debes iniciar sesión primero", "error")
         return redirect(url_for('login', show_login=True))
-    
 
 @app.route('/regresar', methods=['POST'])
 def regresar():
@@ -137,29 +148,53 @@ def regresar():
         flash("Debes iniciar sesión primero", "error")
         return redirect(url_for('login', show_login=True))
 
-    
-@app.route('/gato', methods=['GET','POST'])
+
+@app.route('/gato', methods=['GET', 'POST'])
 def gato():
-     if 'usuario' in session:
-         return render_template('gato.html')
-     else:
+    if 'usuario' in session:
+        return render_template('gato.html')
+    else:
         flash("Debes iniciar sesión primero", "error")
-        return redirect(url_for('cachipun', show_login=True))
-     
-@app.route('/cachipun', methods=['GET','POST'])
+        return redirect(url_for('dashboard', show_login=True))
+
+# Ruta para guardar el puntaje del juego "Gato"
+
+@app.route('/guardar_puntaje_gato', methods=['POST'])
+def guardar_puntaje_gato():
+    if 'usuario' in session:
+        puntaje = request.get_json()['puntaje']
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO juego (JugadorID, NombreJugador, NombreJuego, Puntuacion) VALUES (%s, %s, %s, %s)",
+                       (session['usuario_id'], session['usuario'], 'dashboard', puntaje))
+        conn.commit()
+        return "Puntaje de Gato guardado"
+    else:
+        return "No hay sesión activa"
+
+@app.route('/cachipun', methods=['GET', 'POST'])
 def cachipun():
     if 'usuario' in session:
         return render_template('cachipun.html')
     else:
         flash("Debes iniciar sesión primero", "error")
         return redirect(url_for('cachipun', show_login=True))
-    
+
+@app.route('/guardar_puntaje_cachipun', methods=['POST'])
+def guardar_puntaje_cachipun():
+    puntaje = request.get_json()['puntaje']
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO juego (JugadorID, NombreJugador, NombreJuego, Puntuacion) VALUES (%s, %s, %s, %s)",
+                   (session['usuario_id'], session['usuario'], 'dashboard', puntaje))
+    conn.commit()
+    return "Puntaje de Cachipún guardado"
+
 @app.route('/cerrar_sesion', methods=['POST'])
 def cerrar_sesion():
     # Elimina el nombre de usuario de la sesión
     session.pop('usuario', None)
     # Redirige a la página de inicio con la sección de "Iniciar sesión" visible
     return redirect(url_for('login'))
+
 
 if __name__ == '__main__':
     crear_tabla_login()  # Crea la tabla 'login' si no existe
