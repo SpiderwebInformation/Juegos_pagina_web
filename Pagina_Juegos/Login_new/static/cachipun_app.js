@@ -39,6 +39,19 @@ function jugar(e) {
       alert.actionJuego();
     });
     juegoUsuario.addEventListener('click', jugar);
+  let puntaje = 0;
+if (juego.resultado == 'ganaste') {
+  puntaje = 10;
+} else if (juego.resultado == 'perdiste') {
+  puntaje = 5;
+}
+
+fetch('/guardar_puntaje_cachipun', {
+  method: 'POST',
+  body: JSON.stringify({puntaje: puntaje})
+}).then(res => {
+  console.log("Puntaje guardado");
+});
   }, 1000);
 
 }

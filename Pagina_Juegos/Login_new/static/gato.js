@@ -162,6 +162,20 @@ function gameOver(gameWon) {
     spanO.textContent = contO;
   }
   declareWinner(gameWon.player === huPlayer ? "¡Has ganado!" : "Perdiste.");
+    let puntaje = 0;
+  if (gameWon.player == 'X') {
+    puntaje = 10;
+  } else if (gameWon.player == 'O') {
+    puntaje = 5;
+  }
+
+  fetch('/guardar_puntaje', {
+    method: 'POST',
+    body: JSON.stringify({puntaje: puntaje})
+  })
+  .then(response => {
+    console.log("Puntaje guardado");
+  });
 }
 
 function declareWinner(who) {
