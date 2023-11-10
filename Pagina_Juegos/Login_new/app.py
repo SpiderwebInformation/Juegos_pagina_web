@@ -200,4 +200,5 @@ if __name__ == '__main__':
     crear_tabla_login()  # Crea la tabla 'login' si no existe
     crear_tabla_juego()  # Crea la tabla 'juego' si no existe
     app.secret_key = os.urandom(24)  # Clave secreta para las sesiones
+    app.run(host='0.0.0.0', port=80)
     app.run(debug=True)
