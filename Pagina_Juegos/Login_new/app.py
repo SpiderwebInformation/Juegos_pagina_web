@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from werkzeug.security import check_password_hash, generate_password_hash
-from flask import Flask, request, flash, redirect, url_for
+from flask import Flask, request, flash, redirect, url_for, abort
 import mysql.connector
 import bcrypt
 import os
@@ -36,6 +36,14 @@ def crear_tabla_juego():
                       Puntuacion INT)''')
     conn.commit()
 
+
+@app.errorhandler(400)
+def not_found_error(error):
+    return render_template('error.html', error_code=400),404
+
+@app.errorhandler(500)
+def internat_server_error(error):
+    return render_template('error.html', error_code=500),500
 
 @app.route('/')
 def index():
@@ -195,6 +203,9 @@ def cerrar_sesion():
     # Redirige a la página de inicio con la sección de "Iniciar sesión" visible
     return redirect(url_for('login'))
 
+@app.route('/recurso_no_encontrado')
+def recurso_no_encontrado():
+    abort(404)
 
 if __name__ == '__main__':
     crear_tabla_login()  # Crea la tabla 'login' si no existe
