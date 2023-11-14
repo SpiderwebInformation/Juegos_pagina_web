@@ -7,7 +7,7 @@ import os
 import re
 
 app = Flask(__name__)
-
+app.config['DEBUG'] = True
 # Cargar la configuración desde el archivo config.py
 app.config.from_pyfile('config.py')
 
@@ -38,11 +38,11 @@ def crear_tabla_juego():
 
 
 @app.errorhandler(400)
-def not_found_error(error):
-    return render_template('error.html', error_code=400),404
+def not_found_error(e):
+    return render_template('error.html', error_code=404),404
 
 @app.errorhandler(500)
-def internat_server_error(error):
+def internal_server_error(e):
     return render_template('error.html', error_code=500),500
 
 @app.route('/')
@@ -210,6 +210,7 @@ def recurso_no_encontrado():
 if __name__ == '__main__':
     crear_tabla_login()  # Crea la tabla 'login' si no existe
     crear_tabla_juego()  # Crea la tabla 'juego' si no existe
-    app.secret_key = os.urandom(24)  # Clave secreta para las sesiones
-    app.run(host='0.0.0.0', port=80)
-    app.run(debug=True)
+    app.errorhandler(404)(not_found_error)
+    app.errorhandler(500)(internal_server_error)
+    app.secret_key = os.urandom(24)
+    app.run(host='0.0.0.0', port=80, debug=True)
