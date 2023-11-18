@@ -78,6 +78,7 @@ def registrar():
         ##Verificar si el correo es de Gmail
         if not re.match(r"[^@]+@gmail\.com", correo):
             flash('Por favor, ingresa una dirección de correo de Gmail válida.')
+            cursor.close()
             return redirect(url_for('login'))
 
         # Cifra la contraseña antes de almacenarla en la base de datos
